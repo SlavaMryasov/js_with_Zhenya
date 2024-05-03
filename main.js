@@ -101,3 +101,28 @@ e.preventDefault()
 }
 
 linkElement.addEventListener('click', linkHandler)
+
+
+
+const button2 = {
+  subscribers: {
+    click: [handler1],
+    hover: [handler2],
+    focus: []
+  },
+  click(){
+    addEventListener(this.subscribers['click'].forEach(subscriber => subscriber()))
+  },
+  hover(){
+    addEventListener(this.subscribers['hover'].forEach(subscriber => subscriber()))
+  },
+  focus(){
+    addEventListener(this.subscribers['focus'].forEach(subscriber => subscriber()))
+  },
+  removeEventListener((eventName, subscriber) => { 
+    this.subscribers[eventName] = this.subscribers[eventName].filter(sub => sub !== subscriber)
+  })
+  
+}
+
+button.removeEventListener('click', handler1)
