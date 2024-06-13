@@ -138,12 +138,32 @@
 
 
 
-let car = {
-    brand: 'bmw',
-    showCar() { console.log(this.brand) }
+// let car = {
+//     brand: 'bmw',
+//     showCar() { console.log(this.brand) }
+// }
+
+// let kia = car
+// car = { brand: 'wdw' }
+
+// kia.showCar()
+
+
+
+function foo() {
+    const x = 10;
+    return {
+        x: 20,
+        bar: () => {
+            console.log(this.x)
+        },
+        baz: function () {
+            console.log(this.x)
+        }
+    }
 }
 
-let kia = car
-car = { brand: 'wdw' }
-
-kia.showCar()
+const obj2 = foo.call({ x: 30 })
+// const obj2 = foo()
+obj2.bar()
+obj2.baz()
